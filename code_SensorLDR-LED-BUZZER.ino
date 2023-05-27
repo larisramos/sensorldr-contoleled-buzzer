@@ -21,13 +21,14 @@ void setup() {
   pinMode (ledAzul, OUTPUT); //Define ledAzul (pino digital 12) como saída
   pinMode (ledVermelho, OUTPUT); //Define ledVermelho (pino digital 13) como saída
   pinMode (ldr, INPUT); //Define ldr (pino analógico A0) como saída  
-  Serial.begin(9600); //Inicialização da comunicação serial, com velocidade de comunicação de 9600
+  Serial.begin(115200); //Inicialização da comunicação serial, com velocidade de comunicação de 9600
 }
 
 void loop() {
    valorldr = analogRead (ldr);//Lê o valor do sensor ldr e armazena na variável valorldr
    
-   if((valorldr) < 100) { //Se o valor de valorldr for menor que 100 OU SEJA SE ESTIVER ESCURO:
+   if((valorldr) < 600) { //Se o valor de valorldr for menor que 100 OU SEJA SE ESTIVER ESCURO:
+    digitalWrite(ledVermelho, LOW); //Coloca led Vermelho em alto para acioná-lo  
     digitalWrite(ledAzul, HIGH); //Coloca led Azul em alto para acioná-lo
         tone(buzzer, 1500);//Ligando o buzzer com uma frequência de 1500 Hz.
         delay(500);//Intervalo de 500 milissegundos
